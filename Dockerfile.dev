@@ -1,10 +1,11 @@
 FROM python:3.11-buster
 
 RUN pip install poetry==1.8.2
+RUN pip install poethepoet==0.25.1
 
 WORKDIR /code_test
 
-COPY pyproject.toml poetry.lock ./
+COPY pyproject.toml poetry.lock .pre-commit-config.yaml ./
 
 RUN poetry install
 
@@ -12,5 +13,4 @@ COPY calculator_api ./calculator_api/
 
 COPY tests ./tests/
 
-# CMD ["poetry", "run", "pytest", "-vvv"]
-ENTRYPOINT [ "executable" ]
+CMD ["poetry", "run", "pytest", "-vvv"]

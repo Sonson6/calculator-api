@@ -2,11 +2,22 @@ sudo: required
 services:
  - docker
 
+stages:
+ - name: tests
+ - name: checks
+
 before_install:
  - docker build -t nelsoncastro/calculator_test -f Dockerfile.dev .
- - pip install poethepoet
 
 
-script:
- - docker run nelsoncastro/calculator_test
- - poe checks
+jobs:
+ include:
+  - stage: tests
+    name: running_unit_tests
+    script:
+     - docker run nelsoncastro/calculator_test /bin/bash -c "poe test"
+
+  - stage: checks
+    name: synchronized_hooks
+    script:
+     - docker run nelsoncastro/calculator_test /bin/bash -c "git init && git add . && poe checks"
