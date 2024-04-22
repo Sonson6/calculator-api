@@ -12,4 +12,5 @@ COPY calculator_api ./calculator_api/
 
 COPY tests ./tests/
 
-CMD ["poetry", "run", "pytest", "-vvv"]
+# CMD ["poetry", "run", "pytest", "-vvv"]
+ENTRYPOINT [ "executable" ]

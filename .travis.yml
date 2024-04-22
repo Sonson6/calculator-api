@@ -4,6 +4,9 @@ services:
 
 before_install:
  - docker build -t nelsoncastro/calculator_test -f Dockerfile.dev .
+ - pip install poethepoet
+
 
 script:
  - docker run nelsoncastro/calculator_test
+ - poe checks
