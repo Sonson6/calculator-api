@@ -76,8 +76,7 @@ jobs:
         username: ${{ secrets.DIGITAL_OCEAN_USERNAME }}
         key: ${{ secrets.DIGITAL_OCEAN_KEY }}
         port: ${{ secrets.DIGITAL_OCEAN_PORT }}
-        script: |
-          whoami
+        script: whoami
 
 
 #  build:
