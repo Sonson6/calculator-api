@@ -38,6 +38,7 @@ jobs:
   run-container-pytest:
     name: Pull image created from last job and run pytest
     runs-on: ubuntu-latest
+    needs: build-and-push-image
 
     steps:
     - name: Checkout Repository
