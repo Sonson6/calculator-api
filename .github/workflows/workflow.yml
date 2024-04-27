@@ -3,10 +3,10 @@ name: Docker Build and Test
 on:
   push:
     branches:
-      - main  # Update with your main branch name
+      - master  # Update with your master branch name
   pull_request:
     branches:
-      - main  # Update with your main branch name
+      - master  # Update with your master branch name
 
 jobs:
   build-test-checks:
