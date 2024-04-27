@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-and-push-image:
-    name: Build Docker Image before push
+    name: Build Docker dev Image before push
     runs-on: ubuntu-latest
 
     steps:
@@ -26,7 +26,7 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
 
-    - name: Build and push
+    - name: Build and push dev
       uses: docker/build-push-action@v5
       with:
         context: .
@@ -34,6 +34,13 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/calculator-api-test:latest
 
+    - name: Build and push main image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/calculator-api:latest
 
   run-container-pytest-checks:
     name: Pull image created from last job and run pytest/checks
@@ -57,6 +64,21 @@ jobs:
       run: |
         docker run nelsoncastro/calculator-api-test /bin/bash -c "git init && git add . && poe checks"
 
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.DIGITAL_OCEAN_HOST }}
+        username: ${{ secrets.DIGITAL_OCEAN_USERNAME }}
+        key: ${{ secrets.DIGITAL_OCEAN_KEY }}
+        port: ${{ secrets.DIGITAL_OCEAN_PORT }}
+        script: |
+          whoami
 
 
 #  build:
