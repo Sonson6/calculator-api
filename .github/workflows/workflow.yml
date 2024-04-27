@@ -75,7 +75,7 @@ jobs:
         host: ${{ secrets.DIGITAL_OCEAN_HOST }}
         username: ${{ secrets.DIGITAL_OCEAN_USERNAME }}
         key: ${{ secrets.DIGITAL_OCEAN_KEY }}
-        port: ${{ secrets.DIGITAL_OCEAN_PORT }}
+        port: 22
         script: whoami
 
 
