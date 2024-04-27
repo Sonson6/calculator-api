@@ -62,7 +62,7 @@ jobs:
 
     - name: Run pre-commit checks in Docker container
       run: |
-        docker run nelsoncastro/calculator-api-test /bin/bash -c "git init && git add . && poe checks"
+        docker run ${{ secrets.DOCKERHUB_USERNAME }}/calculator-api-test /bin/bash -c "git init && git add . && poe checks"
 
   build:
     name: Build
@@ -75,8 +75,10 @@ jobs:
         host: ${{ secrets.DIGITAL_OCEAN_HOST }}
         username: ${{ secrets.DIGITAL_OCEAN_USERNAME }}
         key: ${{ secrets.DIGITAL_OCEAN_KEY }}
-        port: 22
-        script: whoami
+        script: |
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/calculator-api:latest
+          docker run -d -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/calculator-api:latest
 
 
 #  build:
