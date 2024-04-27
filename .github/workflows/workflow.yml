@@ -17,6 +17,9 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
+    - name: Echo my docker user name
+      run: ${{ secrets.DOCKERHUB_USERNAME }}
+
     - name: Build Docker image
       run: docker build -t nelsoncastro/calculator-api-test -f Dockerfile.dev .  # Update with your image name/tag and Dockerfile path
 
