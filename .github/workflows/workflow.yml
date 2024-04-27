@@ -9,8 +9,8 @@ on:
       - master  # Update with your master branch name
 
 jobs:
-  build-test-checks:
-    name: Build Docker Image before testing and checking
+  build-and-push-image:
+    name: Build Docker Image before push
     runs-on: ubuntu-latest
 
     steps:
@@ -34,10 +34,26 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/calculator-api-test:latest
 
-#    - name: Run unit tests in Docker container
-#      run: |
-#        docker run nelsoncastro/calculator-api-test /bin/bash -c "poe test"
-#
+
+  run-container-pytest:
+    name: Pull image created from last job and run pytest
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: login to docker
+      run: |
+        echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+        docker pull ${{ secrets.DOCKERHUB_USERNAME }}/calculator-api-test:latest
+
+    - name: Run unit tests in Docker container
+      run: |
+        docker run ${{ secrets.DOCKERHUB_USERNAME }}/calculator-api-test:latest /bin/bash -c "poe test"
+
+
+
 #    - name: Run additional checks in Docker container
 #      run: |
 #        docker run nelsoncastro/calculator-api-test /bin/bash -c "git init && git add . && poe checks"
