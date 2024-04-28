@@ -20,7 +20,7 @@ async def apply_addition(calculator_items: CalculatorItems) -> dict[str, Union[i
     """Endpoint using make_addition function
 
     Args:
-        calculator_items (CalculatorItems): Pydantic BaseModel for addition inputs.
+        calculator_items (CalculatorItems): Pydantic BaseModel for addition inputs (test reload).
 
     Returns:
         dict[str, Union[int, float]]: Dictionary containing result.
