@@ -69,7 +69,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: executing remote ssh commands using ssh key
+    - name: executing remote ssh commands using ssh key on digital ocean
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.DIGITAL_OCEAN_HOST }}
