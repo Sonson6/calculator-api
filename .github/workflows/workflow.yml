@@ -70,11 +70,10 @@ jobs:
       PUSH_PACKAGES: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
       PR_PACKAGES: ${{ github.event_name == 'pull_request' && github.ref == 'refs/heads/master' }}
 
-    if: ${{ env.PUSH_PACKAGES || env.PR_PACKAGES}}
-
     steps:
     - name: executing remote ssh commands using ssh key on digital ocean
       uses: appleboy/ssh-action@v1.0.3
+      if: ${{ env.PUSH_PACKAGES || env.PR_PACKAGES}}
       with:
         host: ${{ secrets.DIGITAL_OCEAN_HOST }}
         username: ${{ secrets.DIGITAL_OCEAN_USERNAME }}
