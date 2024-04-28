@@ -77,9 +77,17 @@ jobs:
         username: ${{ secrets.DIGITAL_OCEAN_USERNAME }}
         key: ${{ secrets.DIGITAL_OCEAN_KEY }}
         script: |
+          # Login to Docker in my ssh user
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+
+          # Stop and remove any existing container
+          docker stop fastapi_container || true && docker rm fastapi_container || true
+
+          # Pull the latest version of the image
           docker pull ${{ secrets.DOCKERHUB_USERNAME }}/calculator-api:latest
-          docker run -d -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/calculator-api:latest
+
+          # Run container with specific name
+          docker run --name fastapi_container -d -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/calculator-api:latest
 
 
 #  build:
