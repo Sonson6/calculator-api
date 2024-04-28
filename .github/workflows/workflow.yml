@@ -2,13 +2,15 @@ name: Docker Build and Test
 
 on: [push, pull_request]
 
+env:
+  PUSH_PACKAGES: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+  PR_PACKAGES: ${{ github.event_name == 'pull_request' && github.ref == 'refs/heads/master' }}
+
+
 jobs:
   build-and-push-image:
     name: Build Docker dev Image before push
     runs-on: ubuntu-latest
-    env:
-      PUSH_PACKAGES: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
-      PR_PACKAGES: ${{ github.event_name == 'pull_request' && github.ref == 'refs/heads/master' }}
 
     steps:
     - name: Checkout Repository
