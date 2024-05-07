@@ -15,6 +15,7 @@ uvicorn = "^0.29.0"
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.0.0"
 pre-commit = "3.2.0"
+commitizen = "^3.25.0"
 
 
 [build-system]
@@ -53,6 +54,7 @@ ignore-module = true
 
 [tool.poe.tasks]
 test         = "pytest -vvv"   # a simple command task
+commit = "cz commit"
 clean = """
 rm -rf .venv
        .mypy_cache
