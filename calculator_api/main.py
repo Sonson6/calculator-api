@@ -27,4 +27,4 @@ async def apply_addition(calculator_items: CalculatorItems) -> dict[str, Union[i
     """
     result = make_addition(calculator_items.first_element, calculator_items.second_element)
 
-    return {"addition_result": result}
+    return {"The result of the requested addition is : ": result}
