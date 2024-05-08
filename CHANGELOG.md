@@ -1,3 +1,9 @@
+## 1.0.1 (2024-05-08)
+
+### Refactor
+
+- **display**: change the way api output is displayed
+
 ## 1.0.0 (2024-05-08)
 
 ### Feat
