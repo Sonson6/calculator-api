@@ -1,3 +1,9 @@
+## 1.0.5 (2024-05-10)
+
+### Fix
+
+- **release-action**: fix release action
+
 ## 1.0.4 (2024-05-10)
 
 ### Fix
