@@ -1,3 +1,9 @@
+## 1.4.0 (2024-05-10)
+
+### Feat
+
+- try new way to publish from poetry
+
 ## 1.3.0 (2024-05-10)
 
 ### Feat
