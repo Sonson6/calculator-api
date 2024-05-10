@@ -1,14 +1,19 @@
 name: Publish to PyPI
 
 on:
-  push:
-    tags:
-      - '*'
+  workflow_run:
+    workflows: ["Bump version"]  # Remplacer par le nom du premier workflow
+    types:
+      - completed
+    branches:
+      - master
+
 
 jobs:
   pypi-published:
     name: Publishing to PyPI
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
     - name: Checkout Repository
@@ -29,10 +34,16 @@ jobs:
         virtualenvs-in-project: true
         installer-parallel: true
 
-    - name: Build package
+    - name: 'Get Previous tag'
+      id: previoustag
+      uses: "WyriHaximus/github-action-get-previous-tag@v1"
+      with:
+        fallback: 1.0.0 # Optional fallback tag to use when no tag can be found
+        #workingDirectory: another/path/where/a/git/repo/is/checked/out # Optional alternative working directory
 
-      run:  |
-        poetry version ${{  github.ref_name }}"
+    - name: Build package
+      run: |
+        poetry version ${{ steps.previoustag.outputs.tag }}
         poetry build
 
     - name: Publish package
