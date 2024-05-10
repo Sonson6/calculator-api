@@ -1,3 +1,9 @@
+## 1.0.6 (2024-05-10)
+
+### Fix
+
+- **release-action**: test a new automatic release action
+
 ## 1.0.5 (2024-05-10)
 
 ### Fix
