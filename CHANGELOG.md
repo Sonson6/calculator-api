@@ -1,3 +1,9 @@
+## 1.0.9 (2024-05-10)
+
+### Fix
+
+- **release-action**: new release test
+
 ## 1.0.8 (2024-05-10)
 
 ### Fix
