@@ -11,7 +11,7 @@ on:
 
 jobs:
   pypi-published:
-    name: Run pre commit checks
+    name: Publishing to PyPI
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
