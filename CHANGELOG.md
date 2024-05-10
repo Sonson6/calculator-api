@@ -1,3 +1,9 @@
+## 1.0.2 (2024-05-10)
+
+### Fix
+
+- **display**: change the way final result is displaye
+
 ## 1.0.1 (2024-05-08)
 
 ### Refactor
