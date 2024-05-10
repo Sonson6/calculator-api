@@ -1,3 +1,9 @@
+## 1.0.3 (2024-05-10)
+
+### Fix
+
+- add a if statement to the release step in CI
+
 ## 1.0.2 (2024-05-10)
 
 ### Fix
