@@ -1,3 +1,9 @@
+## 1.0.4 (2024-05-10)
+
+### Fix
+
+- **release**: fixing release action by inserting it in its own yml
+
 ## 1.0.3 (2024-05-10)
 
 ### Fix
