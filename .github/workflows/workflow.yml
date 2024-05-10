@@ -52,3 +52,12 @@ jobs:
     - name: Run pre-commit checks in Docker container
       run: |
         docker run ${{ secrets.DOCKERHUB_USERNAME }}/calculator-api-test /bin/bash -c "git init && git add . && poe checks"
+
+
+  github-example-tags:
+    runs-on: ubuntu-latest
+    steps:
+     - name: GitHub Tag Name example
+       run: |
+         echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
+         echo "Tag name from github.ref_name: ${{  github.ref_name }}"
