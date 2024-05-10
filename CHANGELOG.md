@@ -1,3 +1,9 @@
+## 1.1.0 (2024-05-10)
+
+### Feat
+
+- **auto-publish**: add publication to pypi
+
 ## 1.0.9 (2024-05-10)
 
 ### Fix
