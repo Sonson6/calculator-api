@@ -1,12 +1,10 @@
 name: Main
 
 on:
-  workflow_run:
-    workflows: ["Bump version"]  # Remplacer par le nom du premier workflow
-    types:
-      - completed
-    branches:
-      - master
+  push:
+    tags:
+      - "*.*.*"
+
 
 jobs:
   build:
