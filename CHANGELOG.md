@@ -1,3 +1,13 @@
+## 1.2.0 (2024-05-10)
+
+### Feat
+
+- **auto-publish**: synchronize poetry version and pypi release
+
+### Fix
+
+- change publish workflow name
+
 ## 1.1.0 (2024-05-10)
 
 ### Feat
