@@ -1,0 +1,26 @@
+name: Main
+
+on:
+  workflow_run:
+    workflows: ["Bump version"]  # Remplacer par le nom du premier workflow
+    types:
+      - completed
+    branches:
+      - master
+
+jobs:
+  build:
+    name: releasing the latest tag
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: "body.md"
+          files: |
+            Release.txt
+            LICENSE
+          token: ${{ secrets.GITHUB_TOKEN }}
