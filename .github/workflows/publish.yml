@@ -1,19 +1,14 @@
 name: Publish to PyPI
 
 on:
-  workflow_run:
-    workflows: ["Bump version"]  # Remplacer par le nom du premier workflow
-    types:
-      - completed
-    branches:
-      - master
-
+  push:
+    tags:
+      - '*'
 
 jobs:
   pypi-published:
     name: Publishing to PyPI
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
     - name: Checkout Repository
@@ -35,7 +30,10 @@ jobs:
         installer-parallel: true
 
     - name: Build package
-      run: poetry build
+
+      run:  |
+        poetry version ${{  github.ref_name }}"
+        poetry build
 
     - name: Publish package
       env:
